@@ -21,12 +21,11 @@ SoundFontは同梱していません。利用するSoundFontのライセンス�
 
 - macOS
 - Xcode
-- JUCE 8.0.13（または互換性のあるJUCE 8系）
+- JUCE 9.0.0（`external/JUCE` のサブモジュール）
 - CMake
 - Projucer（`.jucer`からXcodeプロジェクトを再生成する場合）
 
-`GMSynth.jucer`とチェックイン済みのXcodeプロジェクトは、JUCEがユーザーのホームディレクトリ直下にある構成を前提にしています。
-別の場所にJUCEを置く場合は、ProjucerでJUCEのModule Pathを設定し直してから再エクスポートしてください。
+JUCE 9.0.0は `external/JUCE` にサブモジュールとして固定されています。別途、ユーザーのホームディレクトリなどにJUCEを配置する必要はありません。
 
 ## Build
 
@@ -68,7 +67,7 @@ AUv3のSandbox環境では、旧StateにSecurity-Scoped bookmarkがない場合�
 ## Third-party software
 
 - [FluidSynth](https://github.com/FluidSynth/fluidsynth) は `external/fluidsynth` にサブモジュールとして含まれています。ライセンスは同サブモジュールの `LICENSE` を参照してください。
-- JUCEはリポジトリに同梱していません。JUCEのライセンス条件に従ってください。
+- [JUCE](https://github.com/juce-framework/JUCE) 9.0.0は `external/JUCE` にサブモジュールとして含まれています。JUCEのライセンス条件は同サブモジュールの `LICENSE.md` を参照してください。
 
 ## License
 
@@ -97,12 +96,11 @@ SoundFonts are not included. Use each SoundFont in accordance with its license.
 
 - macOS
 - Xcode
-- JUCE 8.0.13 (or a compatible JUCE 8 release)
+- JUCE 9.0.0 (included as the `external/JUCE` submodule)
 - CMake
 - Projucer (only required when regenerating the Xcode project from the `.jucer` file)
 
-The `GMSynth.jucer` file and the checked-in Xcode project assume that JUCE is located directly in the user's home directory.
-If JUCE is installed elsewhere, update the JUCE Module Paths in Projucer and re-export the project.
+JUCE 9.0.0 is pinned as the `external/JUCE` submodule. No separate JUCE installation in the user's home directory is required.
 
 ## Build
 
@@ -144,7 +142,7 @@ In an AUv3 sandbox, if an old state does not contain a Security-Scoped bookmark,
 ## Third-party software
 
 - [FluidSynth](https://github.com/FluidSynth/fluidsynth) is included as a submodule at `external/fluidsynth`. See the submodule's `LICENSE` for its license.
-- JUCE is not included in this repository. Follow the JUCE license terms.
+- [JUCE](https://github.com/juce-framework/JUCE) 9.0.0 is included as the `external/JUCE` submodule. See the submodule's `LICENSE.md` for the JUCE license terms.
 
 ## License
 

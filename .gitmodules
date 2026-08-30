@@ -1,3 +1,6 @@
 [submodule "external/fluidsynth"]
 	path = external/fluidsynth
 	url = https://github.com/FluidSynth/fluidsynth.git
+[submodule "external/JUCE"]
+	path = external/JUCE
+	url = https://github.com/juce-framework/JUCE.git
