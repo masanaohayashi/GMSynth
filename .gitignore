@@ -13,6 +13,10 @@
 **/xcuserdata/
 **/*.xcuserstate
 
+# macOS release artifacts and local signing/notarization configuration.
+/dist/
+/scripts/macos/config.env
+
 # FluidSynth is tracked as a submodule; its local CMake tree is not source.
 /external/fluidsynth/build/
 /external/fluidsynth/gcem/build/

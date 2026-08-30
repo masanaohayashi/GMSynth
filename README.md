@@ -57,6 +57,25 @@ CMAKE_BIN=/opt/homebrew/bin/cmake ./scripts/build_fluidsynth.sh
 その後、`Builds/MacOSX/GMSynth.xcodeproj`をXcodeで開き、`GMSynth - All`をビルドしてください。
 Projucerで再生成する場合は、`GMSynth.jucer`を開いてXcode exporterを実行します。
 
+## macOS Release
+
+配布用DMGを作成する前に、初回だけApple Notary Service用のKeychainプロファイルを登録します。秘密鍵やパスワードはリポジトリに保存しないでください。
+
+```sh
+xcrun notarytool store-credentials GMSynthNotary \
+  --key "/path/to/AuthKey_XXXXXXXXXX.p8" \
+  --key-id "XXXXXXXXXX" \
+  --issuer "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+```
+
+その後、次のスクリプトを実行すると、Developer ID署名、Universal Releaseビルド、`Applications`リンク入りDMGの作成、Notarization、staple、GitHub Release公開までを行います。
+
+```sh
+./scripts/macos/package-release.sh --notary-profile GMSynthNotary
+```
+
+署名IDやTeam IDなどを変更する場合は、`scripts/macos/config.env.example`をコピーして `scripts/macos/config.env` を作成してください。
+
 ## Runtime
 
 プラグインのUIにある `Load Sound Font` からSoundFontを選択します。
@@ -131,6 +150,25 @@ CMAKE_BIN=/opt/homebrew/bin/cmake ./scripts/build_fluidsynth.sh
 
 Then open `Builds/MacOSX/GMSynth.xcodeproj` in Xcode and build the `GMSynth - All` scheme.
 To regenerate the project with Projucer, open `GMSynth.jucer` and run the Xcode exporter.
+
+## macOS Release
+
+Before creating a distributable DMG, register a Keychain profile for the Apple Notary Service once. Do not store private keys or passwords in the repository.
+
+```sh
+xcrun notarytool store-credentials GMSynthNotary \
+  --key "/path/to/AuthKey_XXXXXXXXXX.p8" \
+  --key-id "XXXXXXXXXX" \
+  --issuer "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+```
+
+Then run the following script. It performs Developer ID signing, a Universal Release build, DMG creation with an `Applications` link, notarization, stapling, and GitHub Release publication.
+
+```sh
+./scripts/macos/package-release.sh --notary-profile GMSynthNotary
+```
+
+To change the signing identity or Team ID, copy `scripts/macos/config.env.example` to `scripts/macos/config.env` and edit the local file.
 
 ## Runtime
 
