@@ -1,3 +1,5 @@
+English follows Japanese
+
 # GMSynth
 
 FluidSynthを音源エンジンに使用した、macOS向けのGM系MIDIソフトウェアシンセサイザーです。
@@ -71,3 +73,79 @@ AUv3のSandbox環境では、旧StateにSecurity-Scoped bookmarkがない場合�
 ## License
 
 GMSynth本体のソースコードはMIT Licenseです。詳細は [LICENSE](LICENSE) を参照してください。
+
+---
+
+# GMSynth
+
+GMSynth is a GM-oriented MIDI software synthesizer for macOS that uses FluidSynth as its sound engine.
+It is built with JUCE and Projucer and generates an AUv3 plug-in and a Standalone Plugin.
+
+## Features
+
+- Select SoundFonts (`.sf2`) and save/restore the selection in plug-in state using a Security-Scoped bookmark
+- Mute, Volume, Pan, Bank, and Program controls for 16 MIDI channels
+- GM-compatible fixed percussion routing for CH10 (MIDI channel 10, zero-based channel 9)
+- Drum-kit selection through drum Program Changes
+- Preset fallback when the requested bank does not contain the requested program
+- GM/GS Reset, All Notes Off, and All Sounds Off handling
+- MIDI CSV logging with timestamps and sample-frame positions
+
+SoundFonts are not included. Use each SoundFont in accordance with its license.
+
+## Requirements
+
+- macOS
+- Xcode
+- JUCE 8.0.13 (or a compatible JUCE 8 release)
+- CMake
+- Projucer (only required when regenerating the Xcode project from the `.jucer` file)
+
+The `GMSynth.jucer` file and the checked-in Xcode project assume that JUCE is located directly in the user's home directory.
+If JUCE is installed elsewhere, update the JUCE Module Paths in Projucer and re-export the project.
+
+## Build
+
+Clone the repository including its submodules.
+
+```sh
+git clone --recurse-submodules https://github.com/masanaohayashi/GMSynth.git
+cd GMSynth
+```
+
+If the repository was cloned without submodules, initialize them with:
+
+```sh
+git submodule update --init --recursive
+```
+
+Build the static FluidSynth library:
+
+```sh
+./scripts/build_fluidsynth.sh
+```
+
+If `cmake` is not on `PATH`, provide its absolute path:
+
+```sh
+CMAKE_BIN=/opt/homebrew/bin/cmake ./scripts/build_fluidsynth.sh
+```
+
+Then open `Builds/MacOSX/GMSynth.xcodeproj` in Xcode and build the `GMSynth - All` scheme.
+To regenerate the project with Projucer, open `GMSynth.jucer` and run the Xcode exporter.
+
+## Runtime
+
+Use `Load Sound Font` in the plug-in UI to select a SoundFont.
+The selected path and macOS Security-Scoped bookmark are stored in the plug-in state and used when the host saves and restores a project.
+
+In an AUv3 sandbox, if an old state does not contain a Security-Scoped bookmark, select the same SoundFont once again and save the project.
+
+## Third-party software
+
+- [FluidSynth](https://github.com/FluidSynth/fluidsynth) is included as a submodule at `external/fluidsynth`. See the submodule's `LICENSE` for its license.
+- JUCE is not included in this repository. Follow the JUCE license terms.
+
+## License
+
+The GMSynth source code is released under the MIT License. See [LICENSE](LICENSE) for details.
