@@ -1,0 +1,21 @@
+# Projucer/JUCE generated source wrappers. Regenerate these from GMSynth.jucer.
+/JuceLibraryCode/
+
+# Keep the exporter projects under Builds/MacOSX in git, but ignore products.
+/Builds/**/build/
+/Builds/**/*_artefacts/
+/Builds/**/*.app/
+/Builds/**/*.appex/
+/Builds/**/*.component/
+/Builds/**/*.vst3/
+/Builds/**/*.a
+/Builds/**/*.dSYM/
+**/xcuserdata/
+**/*.xcuserstate
+
+# FluidSynth is tracked as a submodule; its local CMake tree is not source.
+/external/fluidsynth/build/
+/external/fluidsynth/gcem/build/
+
+# macOS metadata.
+.DS_Store
